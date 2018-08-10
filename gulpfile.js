@@ -4,14 +4,19 @@ var browserSync = require('browser-sync').create();
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
-var uglifyjs = require('uglify-js');
-var composer = require('gulp-uglify/composer');
-var minify = composer(uglifyjs, console);
+var minify = require('gulp-minify');
 
 gulp.task('scripts', function() {
     return gulp.src(['./node_modules/jquery/dist/jquery.js', './src/js/*.js'])
+        .pipe(sourcemaps.init())
         .pipe(concat('bundle.js'))
-        .pipe(minify())
+        .pipe(minify({
+            ext:{
+                src:'.js',
+                min:'.min.js'
+            }
+        }))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist/js'));
 });
 
@@ -19,7 +24,7 @@ gulp.task('sass', function () {
     gulp.src('./src/scss/styles.scss')
         .pipe(autoprefixer({browsers: ['> 1%', 'last 2 version', 'android 4']}))
         .pipe(sourcemaps.init())
-        .pipe(sass())
+        .pipe(sass({outputStyle: 'compressed'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/css'));
 });

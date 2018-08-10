@@ -17,11 +17,9 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.1",
-    "jquery": "^3.3.1",
-    "pump": "^3.0.0",
-    "uglify-js": "^3.4.6"
+    "jquery": "^3.3.1"
   }
 }
